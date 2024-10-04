@@ -109,26 +109,53 @@ print(predictInt)
 at ARM=88 GRIP=94, the predicted SIMS score is -0.53 95% confidence interval for that score is SIMS between -3.10 and 2.03
 
 
-
 #### now add the model fit to our plot for model.2
   
 
 
 ## Model 3 SIM~ARM+GRIP
 
+```{r}
+model.3 =lm(SIMS~ARM+GRIP, data=data)
+summary(model.3)
+```
+model.3 shows that the intercept 5.43 and coefficient 0.037 of ARM and 0.24 of GRIP.The p-value for both is lower than 0.05
+
+
 ### Numerical results (cor)
 
-`
+```{r}
+cor(data)
+```
+SIMS  corrolates with GRip and ARM with these values.
   
 ### Inferential  (Build 2-dimentional model.3)
 
 #### predict model.3 at target point
+
+```{r}
+predict(model.3, targtpoint, interval='prediction')
+```
   
 
 ## Comparing nested models ANOVA Test
+
 
 ### Model.1 vs Model.3
 ### Model.2 vs Model.3
 
 ## Informally compare Model.1 with model.2
 
+```{r}
+anova_result <- anova(model.1, model.3)
+print(anova_result)
+```
+Model.2 is  much better than model one because the p-value in comparison is less than 0.05
+
+
+```{r}
+anova_result <- anova(model.2, model.3)
+print(anova_result)
+```
+
+Model.3
